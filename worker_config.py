@@ -18,7 +18,7 @@ KEEP_ALIVE_SECONDS = 65535
 USERNAME = None
 PASSWORD = None
 
-TELEMETRY = {'temp': 'temperature', 'bp': 'pressure'}
+TELEMETRY = {'temp': 'api_temperature', 'bp': 'api_pressure'}
 
 
 # Client Event Handlers
