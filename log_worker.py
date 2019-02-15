@@ -72,17 +72,18 @@ else:
 
 
 def handle_message(msg):
-    payload = msg.payload.decode()
-    segs = msg.topic.split('/')
+    print('in')
+    # payload = msg.payload.decode()
+    # segs = msg.topic.split('/')
 
-    print(msg.topic, payload)
-
-    if len(segs) == 4:
-        if segs[3].lower() in config['TELEMETRY']:
-            device_id = segs[1]
-            dblog(conn, cur, config['TELEMETRY'][segs[3]],
-                  ('device_id', 'value'),
-                  (device_id, payload))
+    # print(msg.topic, payload)
+    #
+    # if len(segs) == 4:
+    #     if segs[3].lower() in config['TELEMETRY']:
+    #         device_id = segs[1]
+    #         dblog(conn, cur, config['TELEMETRY'][segs[3]],
+    #               ('device_id', 'value'),
+    #               (device_id, payload))
 
     # payload = json.loads(msg.payload.decode())
     # segs = msg.topic.split('/')
