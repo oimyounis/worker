@@ -37,6 +37,7 @@ if 'on_message' in config and config['on_message'] is not None:
     from worker_config import on_message
 else:
     def on_message(client, userdata, msg):
+        print('on_message', msg.payload)
         pgconnect()
         handle_message(msg)
 
@@ -72,6 +73,7 @@ else:
 
 
 def handle_message(msg):
+    print('handle_message', msg.payload)
     payload = msg.payload.decode()
     segs = msg.topic.split('/')
 
