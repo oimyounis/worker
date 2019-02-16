@@ -84,17 +84,17 @@ def handle_message(msg):
                   ('device_id', 'value'),
                   (device_id, payload))
 
-    payload = json.loads(msg.payload.decode())
-    segs = msg.topic.split('/')
-
-    print(msg.topic, msg.payload)
-
-    if len(segs) == 3:
-        if segs[2].lower() in config['TELEMETRY']:
-            device_id = segs[1]
-            dblog(conn, cur, segs[2],
-                  ('device_id', 'temperature', 'humidity', 'pressure'),
-                  (device_id, payload['temperature'], payload['humidity'], payload['pressure']))
+    # payload = json.loads(msg.payload.decode())
+    # segs = msg.topic.split('/')
+    #
+    # print(msg.topic, msg.payload)
+    #
+    # if len(segs) == 3:
+    #     if segs[2].lower() in config['TELEMETRY']:
+    #         device_id = segs[1]
+    #         dblog(conn, cur, segs[2],
+    #               ('device_id', 'temperature', 'humidity', 'pressure'),
+    #               (device_id, payload['temperature'], payload['humidity'], payload['pressure']))
 
 
 client = mqtt.Client(client_id=config['CLIENT_ID'], clean_session=config['CLEAN_SESSION'])
