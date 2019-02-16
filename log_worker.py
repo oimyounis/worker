@@ -73,7 +73,7 @@ else:
 
 
 def handle_message(msg):
-    print('in')
+    print('in', msg.topic)
     # payload = msg.payload.decode()
     # segs = msg.topic.split('/')
 
