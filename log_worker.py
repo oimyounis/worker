@@ -99,7 +99,7 @@ def handle_message(msg):
     #               (device_id, payload['temperature'], payload['humidity'], payload['pressure']))
 
 
-client = mqtt.Client(client_id=config['CLIENT_ID'], clean_session=config['CLEAN_SESSION'])
+client = mqtt.Client(client_id='mqtt_log_worker', clean_session=False)
 client.on_connect = on_connect
 client.on_message = on_message
 client.on_publish = on_publish
@@ -110,7 +110,7 @@ client.on_disconnect = on_disconnect
 if 'USERNAME' in config and config['USERNAME'] is not None and 'PASSWORD' in config and config['PASSWORD'] is not None:
     client.username_pw_set(config['USERNAME'], config['PASSWORD'])
 
-client.connect(config['BROKER_HOSTNAME'], config['BROKER_PORT'], config['KEEP_ALIVE_SECONDS'])
+client.connect('127.0.0.1', 1883, 65535)
 
 client.loop_forever()
 
