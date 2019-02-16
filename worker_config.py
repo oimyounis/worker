@@ -12,7 +12,7 @@ BROKER_PORT = 1883
 
 
 # Client Config
-CLIENT_ID = 'mqtt_log_worker'
+CLIENT_ID = 'mqtt_worker'
 CLEAN_SESSION = False
 KEEP_ALIVE_SECONDS = 65535
 USERNAME = None
