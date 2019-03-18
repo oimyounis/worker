@@ -24,7 +24,7 @@ if 'on_connect' in config and config['on_connect'] is not None:
 else:
     # The callback for when the client receives a CONNACK response from the server.
     def on_connect(client, userdata, flags, rc):
-        # pgconnect()
+        pgconnect()
         print("Connected with result code: " + str(rc))
 
         # Subscribing in on_connect() means that if we lose the connection and
@@ -37,7 +37,7 @@ if 'on_message' in config and config['on_message'] is not None:
     from worker_config import on_message
 else:
     def on_message(client, userdata, msg):
-        # pgconnect()
+        pgconnect()
         handle_message(msg)
 
 
