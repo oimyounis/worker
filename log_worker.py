@@ -24,7 +24,7 @@ if 'on_connect' in config and config['on_connect'] is not None:
 else:
     # The callback for when the client receives a CONNACK response from the server.
     def on_connect(client, userdata, flags, rc):
-        pgconnect()
+        # pgconnect()
         print("Connected with result code: " + str(rc))
 
         # Subscribing in on_connect() means that if we lose the connection and
@@ -37,7 +37,7 @@ if 'on_message' in config and config['on_message'] is not None:
     from worker_config import on_message
 else:
     def on_message(client, userdata, msg):
-        pgconnect()
+        # pgconnect()
         handle_message(msg)
 
 
@@ -63,17 +63,27 @@ if 'on_disconnect' in config and config['on_disconnect'] is not None:
     from worker_config import on_disconnect
 else:
     def on_disconnect(client, userdata, rc):
-        print('received disconnect signal')
+        print('<on_disconnect> disconnected')
         if conn and cur:
-            print('will close connection to db')
+            print('<on_disconnect> will close connection to db')
             cur.close()
             conn.close()
-            print('closed connection to db')
+            print('<on_disconnect> closed connection to db')
 
 
 def handle_message(msg):
-    payload = msg.payload.decode()
+    payload = msg.payload
+
+    try:
+        nullByteIdx = payload.index(b'\x00')
+    except ValueError:
+        nullByteIdx = -1
+
+    if nullByteIdx != -1:
+        payload = payload[:nullByteIdx]
+
     segs = msg.topic.split('/')
+    payload = payload.decode()
 
     print(msg.topic, payload)
 
